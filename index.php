@@ -31,11 +31,12 @@ if (isset($_GET['logout'])) {
   $stmtselect = "Select * FROM posts WHERE user_id=".$_SESSION['id']."";
   $result = mysqli_query($conn, $stmtselect);
   while ($row = mysqli_fetch_assoc($result)) {
+    $date = date('jS F Y g:i:s A', strtotime($row["created_at"]));
     echo "<div class='shadow-sm card mt-2'> 
     <div class='card-body'> 
     <p>$row[title]</p>
     <p>$row[content]</p> 
-    <p>Date: $row[created_at]</p> 
+    <p>Date: $date</p> 
     </div>
     <div class='card-footer'> 
       <a class=\"btn btn-success\" href=\"edit_post.php?id=$row[id]\"><i class='bi bi-pencil'></i>Edit</a>
